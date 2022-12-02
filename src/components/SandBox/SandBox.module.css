@@ -1,0 +1,11 @@
+.SandBox {
+  background-color: rgb(240, 240, 240);
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+}
+.SandBox:hover {
+  background-color: rebeccapurple;
+  color: white;
+
+}
