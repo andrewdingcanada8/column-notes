@@ -1,5 +1,5 @@
 import React from 'react';
-import { noteProps } from '../types/note/noteTypes';
+import { noteProps } from '../types/note/block';
 
 import NoteBlock from '../components/NoteBlock/NoteBlock';
 

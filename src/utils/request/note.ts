@@ -1,7 +1,7 @@
 // import assignToWindow from '../request/helpers'
 // import * as assignToWindow from '../request/helpers';
 import { assignToWindow } from '../request/helpers'
-import { noteProps, notePropsPartial } from '../../types/note/noteTypes'
+import { noteProps } from '../../types/note/block'
 
 export const getRandomInt = (min: number, max: number) => {
   min = Math.ceil(min);

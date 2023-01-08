@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react';
-import { noteProps } from '../../types/note/noteTypes';
+import { noteProps } from '../../types/note/block';
 import { getRandomInt } from '../../utils/request/note'
 
 import classes from './NoteBlock.module.css';
