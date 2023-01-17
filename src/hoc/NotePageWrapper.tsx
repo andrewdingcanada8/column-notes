@@ -1,25 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import { getRandomInt } from '../utils/request/note'
-import NotePage from './NotePage';
+import axios from 'axios';
+import { BlockProvider } from './BlockProvider';
+import NoteBoard from '../components/NoteBoard/NoteBoard';
 // import classes from './NotePageWrapper.module.css';
 
 const NotePageWrapper = (props: any) => {
-  const [text, setText] = useState("");
-  const notes = {
-    0:'a',
-    1:'eeee',
-    2:'fff',
-    3:text,
+  const [notes, setNotes] = useState({});
+  const fetchData = () => {
+
   }
-  const onClick = () => {
-    setText(getRandomInt(1,100) + '')
-    console.log(`clicked, new state is ${text}`)
+  // createNote({ children: [], content: '', type: '' })
+
+  const syncData = async () => {
+    // console.log('synchronizing data...')
+    // const path = window.location.pathname.slice(1)
+    // const res = await axios.get('../data/dummy1.json')
+    // console.log(res)
+    // setNotes(res)
   }
+  useEffect(() => {
+    // runs when mounted and when rerendered
+    syncData()
+  })
+
   return (
-    <>
-      hjh
-      <NotePage notes={notes} onClick={onClick}/>
-    </>
+    <BlockProvider>
+      <NoteBoard rootId='0' />
+    </BlockProvider>
   );
 };
 

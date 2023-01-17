@@ -1,0 +1,11 @@
+.NoteBoard {
+  display: flex;
+  /* display: block; */
+  /* float: left; */
+  /* flex-direction: column; */
+  padding: 40px 40px 10px 40px;
+  width: 1000vw;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: rgb(236, 236, 236);
+}

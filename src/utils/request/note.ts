@@ -1,7 +1,7 @@
 // import assignToWindow from '../request/helpers'
 // import * as assignToWindow from '../request/helpers';
 import { assignToWindow } from '../request/helpers'
-import { noteProps } from '../../types/note/block'
+import { blockData } from '../../types/note/block'
 
 export const getRandomInt = (min: number, max: number) => {
   min = Math.ceil(min);
@@ -9,20 +9,25 @@ export const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-export const createNote = async (props: noteProps) => {
+/**
+ * Function for requesting the creation of a new block object
+ * @param props blockData of new block to be created
+ * @returns unique serverside ID for new block
+ */
+export const createBlock = async (props: blockData): Promise<number> => {
   const noteId = getRandomInt(0, 10 ** 11 - 1)
   await new Promise((resolve) => setTimeout(resolve, 1000));
   return noteId
 }
 
-export const deleteNote = async (id: string) => { }
+export const deleteBlock = async (id: string) => { }
 
-//* could attempt another design with sending only diffs of noteProps
-export const updateNote = async (id: string, props: noteProps) => { }
+//* could attempt another design with sending only diffs of blockData
+export const modifyBlock = async (id: string, props: blockData) => { }
 
 
 assignToWindow({
-  createNote,
-  deleteNote,
-  updateNote,
+  createBlock,
+  deleteBlock,
+  modifyBlock,
 })
