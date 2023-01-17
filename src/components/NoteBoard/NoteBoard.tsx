@@ -23,6 +23,7 @@ const NoteBoard = ({ rootId }: { rootId: string }) => {
 
   return (
     <div className={classes.NoteBoard}>
+      <a href={'http://localhost:5173/0'}>Back</a>
       {columns}
     </div>
   )

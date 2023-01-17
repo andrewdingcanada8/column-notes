@@ -13,6 +13,7 @@ const NoteColumn = ({ id }: { id: string }) => {
   // const hash = getRandomInt(10000, 99999)
   return (
     <div className={classes.NoteColumn}>
+      <a href={'http://localhost:5173/'+id}>{blocks[id].content}</a>
       {blocks[id].children.map(block_id => {
         
         return <NoteBlock id={block_id} key={block_id}/>

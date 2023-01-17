@@ -1,4 +1,6 @@
 .NoteColumn {
+  background-color: rgb(219, 219, 219);
+  color: black;
   overflow-y: scroll;
   /* display: flex; */
   /* flex-direction: column; */
@@ -10,6 +12,9 @@
   max-width: 90vw;
   height: 100%;
   border-radius: 20px;
-  background-color: rgb(219, 219, 219);
   /* border: 2px solid rgb(219, 219, 219); */
+}
+.NoteColumn a {
+  color: rgb(206, 34, 34);
+  font-weight: 600;
 }
