@@ -4,5 +4,3 @@ export const assignToWindow = (map) => {
     window.test[key] = value
   }
 }
-
-export default assignToWindow

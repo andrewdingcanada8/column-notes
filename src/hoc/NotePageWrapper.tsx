@@ -1,5 +1,4 @@
 import React, { useEffect, useState, createContext } from 'react';
-import { getRandomInt } from '../utils/request/note'
 import axios from 'axios';
 import { BlockProvider } from './BlockProvider';
 import NoteBoard from '../components/NoteBoard/NoteBoard';
@@ -15,7 +14,7 @@ const NotePageWrapper = (props: any) => {
 
   const syncData = async () => {
     // console.log('synchronizing data...')
-    const path = window.location.pathname.slice(1)
+    const path = window.location.pathname.slice(1) || '0'
     // const res = await axios.get('../data/dummy1.json')
     // console.log(res)
     setPath(path)
@@ -27,7 +26,7 @@ const NotePageWrapper = (props: any) => {
 
   return (
     <BlockProvider>
-      <NoteBoard rootId={path} />
+      <NoteBoard root_id={path} />
     </BlockProvider>
   );
 };

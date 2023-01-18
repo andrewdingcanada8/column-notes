@@ -18,3 +18,7 @@
   color: rgb(206, 34, 34);
   font-weight: 600;
 }
+
+.NoteBaseColumn {
+  width: 300px;
+}

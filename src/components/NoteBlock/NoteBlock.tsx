@@ -1,7 +1,6 @@
 import React, { memo, useMemo, useContext } from 'react';
 import { BlockContext } from '../../hoc/BlockProvider';
 import { blockData } from '../../types/note/block';
-import { getRandomInt } from '../../utils/request/note'
 
 import classes from './NoteBlock.module.css';
 
@@ -15,8 +14,8 @@ import classes from './NoteBlock.module.css';
 // }
 
 const NoteBlock = ({ id }: { id: string }) => {
-  const blocks = useContext(BlockContext)
-  
+  const {state, dispatch} = useContext(BlockContext)
+  const blocks = state.blocks  
   return (
     <div className={classes.NoteBlock} key={id}>
       {/* <textarea className={classes.BlockInput} onChange={changeHandler} value={blocks[id].content} /> */}

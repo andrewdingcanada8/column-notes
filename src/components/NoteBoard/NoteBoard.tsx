@@ -1,49 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BlockContext } from '../../hoc/BlockProvider';
 
 import NoteBlock from '../NoteBlock/NoteBlock';
-import NoteColumn from '../NoteColumn/NoteColumn';
+import { NoteBaseColumn, NoteColumn } from '../NoteColumn/NoteColumn';
 import classes from './NoteBoard.module.css'
 
-const NoteBoard = ({ rootId }: { rootId: string }) => {
+const NoteBoard = ({ root_id }: { root_id: string }) => {
 
   // check for blocks
-  const blocks = useContext(BlockContext)
-  if (!blocks[rootId]) {
-    return <p>Error with loading note: {rootId}</p>
+  const { state, dispatch } = useContext(BlockContext)
+  const [renders, set_renders] = useState(0)
+
+  useEffect(() => {
+    set_renders(renders+1)
+  }, [root_id])
+
+  const blocks = state.blocks
+  if (!blocks[root_id]) {
+    return <p>Error with loading note: {root_id}</p>
   }
-  
+
   // get columns
-  const columnIds = blocks[rootId].children
-  const columns = columnIds.map(col_id => <NoteColumn id={col_id} key={col_id}/>)
-  
-  
-  console.log({blocks})
-  console.log({columnIds})
+  const columnIds = blocks[root_id].children
+  const columns = columnIds.map(col_id => <NoteColumn id={col_id} key={col_id} />)
+
 
   return (
     <div className={classes.NoteBoard}>
-      <a href={'http://localhost:5173/0'}>Back</a>
+      {Object.keys(blocks).map(e => <li key={e}>{e}</li>)}
+      {'renders: ' + renders}
+      <NoteBaseColumn id={root_id} />
       {columns}
     </div>
   )
-  // const blocks = indexes.map(i => {
-  //   const noteProps: noteProps = {
-  //     content: notes[i],
-  //     children: [],
-  //     type: ''
-  //   }
-  //   console.log('content', props.notes)
-  //   return <NoteBlock {...noteProps}/>
-  // });
-
-  // return (
-  //   <>
-  //     hwy
-  //     {blocks}
-  //     <button onClick={props.onClick}></button>
-  //   </>
-  // );
-};
+}
 
 export default NoteBoard;
