@@ -33,9 +33,9 @@ const NoteBoard = ({ root_id }: { root_id: string }) => {
 
   const new_column_handler = () => {
     const new_id = get_rand_id()
-    dispatch({ type: "create", id: new_id, block_data: { content: "hey guys, austin here", parent: root_id , blockType:'text', children:[]} });
+    dispatch({ type: "create", id: new_id, block_data: { content: "untitled", parent: root_id , blockType:'text', children:[]} });
     const new_child_id = get_rand_id()
-    dispatch({ type: "create", id: new_child_id, block_data: { content: "hey guys, austin here", parent: new_id , blockType:'text', children:[]} });
+    dispatch({ type: "create", id: new_child_id, block_data: { content: "untitled", parent: new_id , blockType:'text', children:[]} });
   }
 
   return (

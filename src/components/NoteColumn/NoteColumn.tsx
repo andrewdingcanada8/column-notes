@@ -27,7 +27,7 @@ export const NoteColumn = ({ id }: { id: string }) => {
 
   const newBlockHandler = () => {
     const new_id = get_rand_id()
-    dispatch({ type: "create", id: new_id, block_data: { content: "hey guys, austin here", parent: id , blockType:'text', children:[]} });
+    dispatch({ type: "create", id: new_id, block_data: { content: "untitled", parent: id , blockType:'text', children:[]} });
   }
 
   return (
