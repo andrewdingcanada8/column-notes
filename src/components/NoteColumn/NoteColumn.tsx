@@ -1,4 +1,5 @@
 import React, { memo, useContext, useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BlockContext } from '../../hoc/BlockProvider';
 import { blockData } from '../../types/note/block';
 import { get_rand_id } from '../../utils/id_gen';
@@ -31,7 +32,7 @@ export const NoteColumn = ({ id }: { id: string }) => {
 
   return (
     <div className={classes.NoteColumn}>
-      <a href={'http://localhost:5173/' + id}>{blocks[id].content}</a>
+      <Link to={'../'+id}>{blocks[id].content}</Link>
       {blocks[id].children.map(block_id => {
 
         return <NoteBlock id={block_id} key={block_id} />
@@ -58,13 +59,13 @@ export const NoteBaseColumn = ({ id }: { id: string }) => {
   const blocks = state.blocks
   return (
     <div className={[classes.NoteColumn, classes.NoteBaseColumn].join(' ')}>
-      <a href={'http://localhost:5173/0'}>{"[< Home]"}</a>
+      <Link to={'../'+"0"}>{"[< Back]"}</Link>
       <NoteBlock id={id} key={id} />
       <strong>Children</strong>
       <ul>
         {
           blocks[id].children.map(id =>
-            <li key={id}><a href={'http://localhost:5173/' + id}>{blocks[id]?.content}</a></li>
+            <li key={id}><Link to={'../'+id}>{blocks[id]?.content}</Link></li>
           )
         }
       </ul>

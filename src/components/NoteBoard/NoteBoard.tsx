@@ -5,6 +5,11 @@ import NoteBlock from '../NoteBlock/NoteBlock';
 import { NoteBaseColumn, NoteColumn } from '../NoteColumn/NoteColumn';
 import classes from './NoteBoard.module.css'
 
+
+// export async function loader(props: any) {
+//   return {block_id: props.params.block_id};
+// }
+
 const NoteBoard = ({ root_id }: { root_id: string }) => {
 
   // check for blocks
@@ -27,7 +32,9 @@ const NoteBoard = ({ root_id }: { root_id: string }) => {
 
   return (
     <div className={classes.NoteBoard}>
-      {Object.keys(blocks).map(e => <li key={e}>{e}</li>)}
+      <ul>
+        {Object.keys(blocks).map(e => <li key={e}>{e}</li>)}
+      </ul>
       {'renders: ' + renders}
       <NoteBaseColumn id={root_id} />
       {columns}

@@ -1,4 +1,5 @@
 import React, { memo, useMemo, useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BlockContext } from '../../hoc/BlockProvider';
 import { blockData, placeholder_block } from '../../types/note/block';
 import { debounce } from '../../utils/debounce';
@@ -40,6 +41,7 @@ const NoteBlock = ({ id }: { id: string }) => {
   return (
     <div className={classes.NoteBlock} key={id}>
       {/* <textarea className={classes.BlockInput} onChange={changeHandler} value={blocks[id].content} /> */}
+      <Link to={'../'+id}>{">"}</Link>
       <textarea className={classes.ContentInputArea} onChange={onChangeHandler} value={temp_data.content} />
     </div>
   )

@@ -1,12 +1,15 @@
 import React, { useEffect, useState, createContext } from 'react';
-import axios from 'axios';
+import { useLoaderData } from "react-router-dom";
+
 import { BlockProvider } from './BlockProvider';
 import NoteBoard from '../components/NoteBoard/NoteBoard';
+
 // import classes from './NotePageWrapper.module.css';
 
 const NotePageWrapper = (props: any) => {
+
+  const root_id = (useLoaderData() as string);
   const [notes, setNotes] = useState({});
-  const [path, setPath] = useState('0');
   const fetchData = () => {
 
   }
@@ -14,10 +17,8 @@ const NotePageWrapper = (props: any) => {
 
   const syncData = async () => {
     // console.log('synchronizing data...')
-    const path = window.location.pathname.slice(1) || '0'
     // const res = await axios.get('../data/dummy1.json')
     // console.log(res)
-    setPath(path)
   }
   useEffect(() => {
     // runs when mounted and when rerendered
@@ -26,7 +27,7 @@ const NotePageWrapper = (props: any) => {
 
   return (
     <BlockProvider>
-      <NoteBoard root_id={path} />
+      <NoteBoard root_id={root_id} />
     </BlockProvider>
   );
 };
