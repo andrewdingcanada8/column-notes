@@ -1,18 +1,6 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
-import { blockData } from '../types/note/block';
+import { blockData, placeholder_block } from '../types/note/block';
 import { blocks } from '../data/dummy_blocks';
-import { get_rand_id } from '../utils/id_gen';
-
-const default_block: blockData = {
-  blockType: 'text',
-  content: '',
-  properties: {
-    creationTime: 0,
-    modifiedTime: 0
-  },
-  parent: '0',
-  children: [],
-}
 
 // from https://kentcdodds.com/blog/how-to-use-react-context-effectively
 // const block_reducer = (blocks: {[key: string]: blockData}, action: {type: string, id?: string, block_data?: blockData}) => {
@@ -20,21 +8,26 @@ const default_block: blockData = {
 type block_state = {
   blocks: { [key: string]: blockData }
 }
-export const BlockContext = createContext({ state: { blocks }, dispatch: ({ type, id, block_data }: { type: string, id?: string, block_data?: blockData }) => { } });
+export const BlockContext = createContext({ state: { blocks }, dispatch: ({ type, id, block_data }: { type: "create" | "modify" | "delete", id: string, block_data: blockData | Partial<blockData> | undefined }) => { } });
 
 // TODO: fix any here
 //* reducers should always have pure output (called twice to make sure)
-const block_reducer = (state: any, action: { type: string, id: string, block_data?: blockData }) => {
+const block_reducer = (state: any, action: {
+  type: "create" | "modify" | "delete",
+  id: string,
+  block_data: blockData | Partial<blockData> | undefined
+}) => {
   try {
     switch (action.type) {
       case 'create': {
         console.log("creating new block...")
         if (!action.block_data) {
           throw new Error("Attempt to create block without providing block_data");
-          
+
           ("ERROR: exception")
         }
-        const parent_id = action.block_data.parent
+
+        const parent_id = (action.block_data.parent as string)
 
         const parent = {
           [parent_id]: {
@@ -43,7 +36,7 @@ const block_reducer = (state: any, action: { type: string, id: string, block_dat
           }
         }
 
-        const new_block = { ...default_block, ...action.block_data }
+        const new_block = { ...placeholder_block, ...action.block_data }
         return {
           blocks: {
             ...state.blocks,
@@ -54,7 +47,15 @@ const block_reducer = (state: any, action: { type: string, id: string, block_dat
 
       }
       case 'modify': {
-        throw new Error("WARNING: 'modify' has not yet been implemented")
+        return {
+          blocks: {
+            ...state.blocks,
+            [action.id]: {
+              ...blocks[action.id],
+              content: action.block_data?.content,
+            }
+          }
+        }
       }
       case 'delete': {
         throw new Error("WARNING: 'delete' has not yet been implemented")

@@ -8,10 +8,18 @@ export type blockData = {
   children: string[],
 }
 
+
 export type blockProperties = {
   creationTime: number,
   modifiedTime: number,
   // perhaps latest author? list of authors?
+}
+
+export const placeholder_block: blockData = {
+  blockType: 'text',
+  content: '',
+  parent: '0',
+  children: [],
 }
 
 //TODO: Union types for incomplete clientside and serverside block properties
