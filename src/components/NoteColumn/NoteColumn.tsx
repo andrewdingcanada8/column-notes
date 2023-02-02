@@ -29,14 +29,16 @@ export const NoteColumn = ({ id }: { id: string }) => {
     const new_id = get_rand_id()
     dispatch({ type: "create", id: new_id, block_data: { content: "untitled", parent: id , blockType:'text', children:[]} });
   }
-
+  let columnStyles = {} as { [key: string]: string }
+  const s = getLine(blocks[id].content, -1)
+  if (s) {
+    const style = s.split(': ').map((s) => s.trim())
+    if (style[0] === 'width') {
+      columnStyles[style[0]] = style[1]
+    }
+  }
   return (
-    <div className={classes.NoteColumn}>
-      <Link to={'../'+id}>{blocks[id].content}</Link>
-      {blocks[id].children.map(block_id => {
-
-        return <NoteBlock id={block_id} key={block_id} />
-      })}
+    <div className={classes.NoteColumn} style={columnStyles}>
       <NewBlockButton onClick={newBlockHandler} />
     </div>
   )
@@ -57,17 +59,16 @@ export const NoteColumn = ({ id }: { id: string }) => {
 export const NoteBaseColumn = ({ id }: { id: string }) => {
   const { state, dispatch } = useContext(BlockContext)
   const blocks = state.blocks
-  return (
-    <div className={[classes.NoteColumn, classes.NoteBaseColumn].join(' ')}>
-      <Link to={'../'+"0"}>{"[< Back]"}</Link>
-      <NoteBlock id={id} key={id} />
-      <strong>Children</strong>
-      <ul>
-        {
-          blocks[id].children.map(id =>
-            <li key={id}><Link to={'../'+id}>{blocks[id]?.content}</Link></li>
-          )
-        }
+  // const navigate = useNavigate();
+  let columnStyles = {} as { [key: string]: string }
+  const s = getLine(blocks[id].content, -1)
+  if (s) {
+    const style = s.split(': ').map((s) => s.trim())
+    if (style[0] === 'width') {
+      columnStyles[style[0]] = style[1]
+    }
+  }
+    <div className={[classes.NoteColumn, classes.NoteBaseColumn].join(' ')} style={columnStyles}>
       </ul>
     </div>
   )
