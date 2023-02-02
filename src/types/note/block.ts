@@ -6,6 +6,10 @@ export type blockData = {
   properties?: blockProperties,
   parent: string
   children: string[],
+  // TODO: add:
+  edit_access: string[],
+  // view_access: string[],
+  // owner_access: string[],
 }
 
 
@@ -15,11 +19,16 @@ export type blockProperties = {
   // perhaps latest author? list of authors?
 }
 
+export type block_map = {[key: string]: blockData}
+
+export type block_state = { blocks: block_map }
+
 export const placeholder_block: blockData = {
   blockType: 'text',
   content: '',
   parent: '0',
   children: [],
+  edit_access: ["andrew_ding"], //TEMP
 }
 
 //TODO: Union types for incomplete clientside and serverside block properties

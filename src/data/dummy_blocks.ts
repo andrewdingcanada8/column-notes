@@ -1,6 +1,6 @@
-import { blockData } from "../types/note/block";
+import { blockData, block_map } from "../types/note/block";
 
-export const blocks: { [key: string]: blockData } = {
+export const blocks: block_map = {
   '0': {
     blockType: 'text',
     content: 'Root Block! contentttttt',
@@ -8,6 +8,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '',
     children: [
       '1',
       '2',
@@ -21,6 +22,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '0',
     children: [
       '4',
       '5',
@@ -34,6 +36,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '0',
     children: [
       '7',
       '8',
@@ -46,6 +49,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '0',
     children: [
       '9'
     ]
@@ -57,6 +61,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '1',
     children: [
     ]
   },
@@ -67,6 +72,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '1',
     children: [
     ]
   },
@@ -77,6 +83,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '1',
     children: [
     ]
   },
@@ -87,6 +94,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '2',
     children: [
     ]
   },
@@ -97,6 +105,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '2',
     children: [
     ]
   },
@@ -107,6 +116,7 @@ export const blocks: { [key: string]: blockData } = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    parent: '3',
     children: [
     ]
   },

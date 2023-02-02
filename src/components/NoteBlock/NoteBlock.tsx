@@ -1,8 +1,9 @@
-import React, { memo, useMemo, useContext, useState, useEffect } from 'react';
+import React, { memo, useMemo, useContext, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { BlockContext } from '../../hoc/BlockProvider';
 import { blockData, placeholder_block } from '../../types/note/block';
 import { debounce } from '../../utils/debounce';
+import { first_line } from '../../utils/text';
 
 import classes from './NoteBlock.module.css';
 
@@ -21,18 +22,30 @@ const NoteBlock = ({ id }: { id: string }) => {
   const [temp_data, set_temp_data] = useState(placeholder_block as blockData)
 
   useEffect(() => {
-    console.log('render!');
     set_temp_data({ ...state.blocks[id] })
     set_renders(renders + 1)
   }, [state.blocks[id]])
 
-  const blocks = state.blocks
-
   const debounced_update = React.useCallback(
     debounce((content: string) => {
-      dispatch({ type: "modify", id: id, block_data: { content: content }})
-    }, 1000), [] //* 1000 ms
+      dispatch({ type: "modify", id: id, block_data: { content: content } })
+    }, 500), [] //* 500 ms
   )
+
+  // TEMP code to automatically readjust height
+  // https://medium.com/@oherterich/creating-a-textarea-with-dynamic-height-using-react-and-typescript-5ed2d78d9848
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    if (textAreaRef.current) {
+      // We need to reset the height momentarily to get the correct scrollHeight for the textarea
+      textAreaRef.current.style.height = "0px";
+      const scrollHeight = textAreaRef.current.scrollHeight;
+
+      // We then set the height directly, outside of the render loop
+      // Trying to set this with state or a ref will product an incorrect value.
+      textAreaRef.current.style.height = scrollHeight + "px";
+    }
+  }, [textAreaRef.current, temp_data.content]);
 
   const onChangeHandler = (e: any) => {
     set_temp_data(e.target.value)
@@ -41,8 +54,13 @@ const NoteBlock = ({ id }: { id: string }) => {
   return (
     <div className={classes.NoteBlock} key={id}>
       {/* <textarea className={classes.BlockInput} onChange={changeHandler} value={blocks[id].content} /> */}
-      <Link to={'../'+id}>{">"}</Link>
-      <textarea className={classes.ContentInputArea} onChange={onChangeHandler} value={temp_data.content} />
+      <textarea
+        className={classes.ContentInputArea}
+        onChange={onChangeHandler}
+        value={temp_data.content}
+        ref={textAreaRef}
+      />
+      <Link to={'../' + id}>{"[>]"}</Link>
     </div>
   )
 

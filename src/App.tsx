@@ -3,6 +3,7 @@ import NotePageWrapper from './hoc/NotePageWrapper'
 
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
@@ -11,8 +12,8 @@ import './index.css'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <h1>select a note</h1>,
-    errorElement: <p>ERROR 404: path doesn't exist.</p>,
+    element: <Navigate to={"FDXfAgq4FsRzEVKD2aUj"} />, //TEMP
+    // errorElement: <p>ERROR 404: path doesn't exist.</p>,
     // loader: block_loader,
   },
   {

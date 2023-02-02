@@ -1,3 +1,5 @@
+
+::-webkit-scrollbar {display:none;} /* //TEMP: DOESN'T WORK ON FIREFOX */
 .NoteColumn {
   background-color: rgb(219, 219, 219);
   color: black;
@@ -6,6 +8,7 @@
   /* flex-direction: column; */
   margin-right: 10px;
   padding: 14px;
+  padding-bottom: 100px;
   box-sizing: border-box;
   width: 400px;
   /* make sure full column visible in slim split screen / slide-over */
@@ -13,6 +16,7 @@
   height: 100%;
   border-radius: 20px;
   /* border: 2px solid rgb(219, 219, 219); */
+  
 }
 .NoteColumn a {
   color: rgb(206, 34, 34);
@@ -21,4 +25,8 @@
 
 .NoteBaseColumn {
   width: 300px;
+  background-color: rgb(203, 203, 203);
+}
+ul {
+  padding-left: 10px;
 }
