@@ -8,6 +8,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '',
     children: [
       '1',
@@ -22,6 +23,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '0',
     children: [
       '4',
@@ -36,6 +38,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '0',
     children: [
       '7',
@@ -49,6 +52,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '0',
     children: [
       '9'
@@ -61,6 +65,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '1',
     children: [
     ]
@@ -72,6 +77,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '1',
     children: [
     ]
@@ -83,6 +89,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '1',
     children: [
     ]
@@ -94,6 +101,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '2',
     children: [
     ]
@@ -105,6 +113,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '2',
     children: [
     ]
@@ -116,6 +125,7 @@ export const blocks: block_map = {
       creationTime: 12321321,
       modifiedTime: 1232112
     },
+    edit_access: ['andrew_ding'],
     parent: '3',
     children: [
     ]

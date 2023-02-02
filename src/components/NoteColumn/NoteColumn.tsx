@@ -59,6 +59,43 @@ export const NoteColumn = ({ id }: { id: string }) => {
   // };
 }
 
+export const NoteDetachedColumn = () => {
+
+  // const { state, dispatch } = useContext(BlockContext);
+  const [tmp_text, set_tmp_text] = useState('');
+
+  const onChangeHandler = (e: any) => {
+    const text: string = e.target.value
+    set_tmp_text(text)
+  }
+  const columnStyles = {'width': '100px'}
+  if (tmp_text) {
+    columnStyles['width'] = '400px'
+  }
+  return (
+    <div className={classes.NoteColumn} style={columnStyles}>
+      {/* <Link to={'../' + id}>{blocks[id] ? first_line(blocks[id].content) : 'ERROR'}</Link> //TEMP */}
+      {/* <NoteBlock id={id} key={id} /> */}
+      <textarea
+        className={classes.ContentInputArea}
+        onChange={onChangeHandler}
+        value={tmp_text}
+      />
+      <strong>———</strong>
+      {
+        tmp_text
+        .split('\n')
+        .filter(s => s.length === 8)
+        .map(block_id =>
+          <NoteBlock id={block_id} key={block_id} />
+        )
+      }
+    </div>
+  )
+
+}
+
+
 export const NoteBaseColumn = ({ id }: { id: string }) => {
   const [renders, set_renders] = useState(0);
   useEffect(() => {

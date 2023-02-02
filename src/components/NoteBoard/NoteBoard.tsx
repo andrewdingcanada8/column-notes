@@ -6,7 +6,7 @@ import { first_line } from '../../utils/text';
 
 import NoteBlock from '../NoteBlock/NoteBlock';
 import NewColumnButton from '../NoteColumn/NewColumnButton';
-import { NoteBaseColumn, NoteColumn } from '../NoteColumn/NoteColumn';
+import { NoteBaseColumn, NoteColumn, NoteDetachedColumn } from '../NoteColumn/NoteColumn';
 import classes from './NoteBoard.module.css'
 
 
@@ -36,7 +36,7 @@ const NoteBoard = ({ root_id }: { root_id: string }) => {
 
   return (
     <div className={classes.NoteBoard}>
-      <NoteColumn id={"r27egbl7"} key={"r27egbl7"} /> {/* //TEMP */}
+      <NoteDetachedColumn /> {/* //TEMP */}
       <NoteBaseColumn id={root_id} />
       {columns}
       <NewColumnButton onClick={new_column_handler} />
