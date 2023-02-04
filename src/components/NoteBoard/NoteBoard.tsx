@@ -19,7 +19,7 @@ const NoteBoard = ({ root_id }: { root_id: string }) => {
   const { state, dispatch } = useContext(BlockContext)
   const blocks = state.blocks
   if (!blocks[root_id]) {
-    return <p>Error with loading note: {root_id}</p>
+    return <em>{root_id} is Loading...</em>
   }
 
   // get columns
