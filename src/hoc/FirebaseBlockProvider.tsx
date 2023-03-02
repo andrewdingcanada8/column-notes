@@ -22,7 +22,7 @@ export const FirebaseBlockProvider = ({ user_id, children }: { user_id: string, 
       set_state({ blocks: new_blocks })
     });
     return unsub
-  }, [user_id, children])
+  }, [user_id])
 
 
   const dispatch = ({type, id, block_data}: {
