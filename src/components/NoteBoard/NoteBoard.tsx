@@ -2,9 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, redirect } from 'react-router-dom';
 import { BlockContext } from '../../hoc/BlockProvider';
 import { get_rand_id } from '../../utils/id_gen';
-import { first_line } from '../../utils/text';
+import NodeGraphColumn from '../NodeGraph/NodeGraphColumn';
 
-import NoteBlock from '../NoteBlock/NoteBlock';
 import NewColumnButton from '../NoteColumn/NewColumnButton';
 import { NoteBaseColumn, NoteColumn, NoteDetachedColumn } from '../NoteColumn/NoteColumn';
 import classes from './NoteBoard.module.css'
@@ -36,6 +35,7 @@ const NoteBoard = ({ root_id }: { root_id: string }) => {
 
   return (
     <div className={classes.NoteBoard}>
+      <NodeGraphColumn type="radial" root_id={root_id} /> {/* //TEMP */}
       <NoteDetachedColumn /> {/* //TEMP */}
       <NoteBaseColumn id={root_id} />
       {columns}

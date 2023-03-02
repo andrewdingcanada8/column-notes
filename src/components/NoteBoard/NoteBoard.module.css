@@ -1,5 +1,6 @@
 .NoteBoard {
   display: flex;
+  flex-direction: row;
   /* display: block; */
   /* float: left; */
   /* flex-direction: column; */

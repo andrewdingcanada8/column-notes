@@ -62,7 +62,7 @@ export const NoteColumn = ({ id }: { id: string }) => {
 export const NoteDetachedColumn = () => {
 
   // const { state, dispatch } = useContext(BlockContext);
-  const [tmp_text, set_tmp_text] = useState('');
+  const [tmp_text, set_tmp_text] = useState('rm8vstbw\n0jftsc5v');
 
   const onChangeHandler = (e: any) => {
     const text: string = e.target.value
@@ -122,16 +122,22 @@ export const NoteBaseColumn = ({ id }: { id: string }) => {
   //     </Link></li>
   // ))
 
-  const BulletListRecur = ({ block_id }: { block_id: string }) => {
+  const BulletListRecur = ({ block_id, depth }: { block_id: string, depth: number }) => {
+    const MAX_DEPTH = 3
     const content = first_line(blocks[block_id].content)
     const child_ids = blocks[block_id].children
-    const children = child_ids.map((block_id) => <BulletListRecur block_id={block_id} />)
+    let children_els
+    if (depth < MAX_DEPTH -1) {
+      children_els = child_ids.map((child_id) => <BulletListRecur key={child_id} block_id={child_id} depth={depth+1} />)
+    } else {
+      children_els = null
+    }
     return (
       <>
-        <li>
+        <li key={block_id}>
           <Link to={'../' + block_id}>{content}</Link></li>
         <ul>
-          {children}
+          {children_els}
         </ul>
       </>
     )
@@ -148,7 +154,7 @@ export const NoteBaseColumn = ({ id }: { id: string }) => {
       <NoteBlock id={id} key={id} />
       <ul>
         <strong>{'renders: ' + renders}</strong>
-        <BulletListRecur block_id={id} />
+        <BulletListRecur block_id={id} depth={0}/>
 
       </ul>
     </div>

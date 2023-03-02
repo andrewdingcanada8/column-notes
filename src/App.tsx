@@ -7,6 +7,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
+import NodeGraph from './components/NodeGraph/NodeGraph';
+import { BlockProvider } from './hoc/BlockProvider';
 
 
 const router = createBrowserRouter([
@@ -17,9 +19,19 @@ const router = createBrowserRouter([
     // loader: block_loader,
   },
   {
-    path: ":block_id",
+    path: "/:block_id",
     element: <NotePageWrapper />,
-    loader: ({params}) => (params.block_id as string),
+    loader: ({ params }) => (params.block_id as string),
+  },
+  {
+    path: "/graph/:block_id",
+    //TEMP user_id
+    element: (
+      <BlockProvider user_id={"andrew_ding"}>
+        <NodeGraph type="radial"/>
+      </BlockProvider>
+    ),
+    loader: ({ params }) => (params.block_id as string),
   },
 ]);
 
@@ -28,7 +40,7 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   )
 }
 
