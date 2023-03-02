@@ -1,0 +1,8 @@
+.NodeGraphColumn {
+  width: 600px;
+  background-color: rgb(219, 219, 219);
+  border-radius: 20px;
+  margin-right: 10px;
+  padding: 14px;
+  box-sizing: border-box;
+}
