@@ -1,5 +1,6 @@
 import React, { memo, useContext, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { shift_child_order } from '../../hoc/actions';
 import { BlockContext } from '../../hoc/BlockProvider';
 import { blockData } from '../../types/note/block';
 import { get_rand_id } from '../../utils/id_gen';
@@ -16,10 +17,10 @@ export const NoteColumn = ({ id }: { id: string }) => {
   useEffect(() => {
     set_renders(renders + 1)
   }, [id])
-
+  
   const { state, dispatch } = useContext(BlockContext);
   const blocks = state.blocks
-
+  
   const newBlockHandler = () => {
     const new_id = get_rand_id()
     dispatch({ type: "create", id: new_id, block_data: { content: "untitled", parent: id, blockType: 'text', children: [] } });
@@ -32,10 +33,14 @@ export const NoteColumn = ({ id }: { id: string }) => {
       columnStyles[style[0]] = style[1]
     }
   }
+  const shift_handler = (dir: "start" | "end") => shift_child_order({state, dispatch}, blocks[id].parent, id, dir)
+
   return (
     <div className={classes.NoteColumn} style={columnStyles}>
       <Link to={'../' + id}>{blocks[id] ? first_line(blocks[id].content) : 'ERROR'}</Link> {/* //TEMP */}
-      <NoteBlock id={id} key={id} />
+      <NoteBlockMonaco id={id} key={id} />
+      <button onClick={() => shift_handler("start")}>{"<"}</button>
+      <button onClick={() => shift_handler("end")}>{">"}</button>
       <strong>———</strong>
       {
         blocks[id]?.children.map(block_id =>
@@ -101,7 +106,7 @@ export const NoteBaseColumn = ({ id }: { id: string }) => {
   useEffect(() => {
     set_renders(renders + 1)
   }, [id])
-  const { state, dispatch } = useContext(BlockContext)
+  const { state, dispatch, num_fetches } = useContext(BlockContext)
   const blocks = state.blocks
   // const navigate = useNavigate();
   let columnStyles = {} as { [key: string]: string }
@@ -153,7 +158,7 @@ export const NoteBaseColumn = ({ id }: { id: string }) => {
       {/* <button onClick={() => navigate(-1)}>{"[< Back]"}</button> //TEMP */}
       <NoteBlock id={id} key={id} />
       <ul>
-        <strong>{'renders: ' + renders}</strong>
+        <strong>{`renders: ${renders} | fetches: ${num_fetches}`}</strong>
         <BulletListRecur block_id={id} depth={0}/>
 
       </ul>
