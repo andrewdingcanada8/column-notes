@@ -7,6 +7,7 @@ import { get_rand_id } from '../../utils/id_gen';
 import { first_line, getLine } from '../../utils/text';
 import NewBlockButton from '../NoteBlock/NewBlockButton';
 import NoteBlock from '../NoteBlock/NoteBlock';
+import NoteBlockMonaco from '../NoteBlock/NoteBlockMonaco';
 
 import classes from './NoteColumn.module.css';
 
@@ -44,7 +45,7 @@ export const NoteColumn = ({ id }: { id: string }) => {
       <strong>———</strong>
       {
         blocks[id]?.children.map(block_id =>
-          <NoteBlock id={block_id} key={block_id} />
+          <NoteBlockMonaco id={block_id} key={block_id} />
         )
       }
       <NewBlockButton onClick={newBlockHandler} />
@@ -92,7 +93,7 @@ export const NoteDetachedColumn = () => {
         .split('\n')
         .filter(s => s.length === 8)
         .map(block_id =>
-          <NoteBlock id={block_id} key={block_id} />
+          <NoteBlockMonaco id={block_id} key={block_id} />
         )
       }
     </div>
@@ -156,7 +157,7 @@ export const NoteBaseColumn = ({ id }: { id: string }) => {
       <Link to={'../' + "FDXfAgq4FsRzEVKD2aUj"}>{"[Root]"}</Link> {/* //TEMP */}
       <Link to={'../' + blocks[id].parent}>{"[^ Up]"}</Link> {/* //TEMP */}
       {/* <button onClick={() => navigate(-1)}>{"[< Back]"}</button> //TEMP */}
-      <NoteBlock id={id} key={id} />
+      <NoteBlockMonaco id={id} key={id} />
       <ul>
         <strong>{`renders: ${renders} | fetches: ${num_fetches}`}</strong>
         <BulletListRecur block_id={id} depth={0}/>
